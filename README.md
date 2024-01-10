@@ -1,3 +1,9 @@
+Exports changed to be compatible with RP Emotes
+
+https://github.com/TayMcKenzieNZ/rpemotes
+
+---
+
 hope this helps someone. 
 
 TIP: If you are using qb/qbx then please enable the config. 
