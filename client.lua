@@ -6,8 +6,8 @@ local randomIdleAnim = config.randomIdleAnimations
 local lastIdleAnimation = ""
 
 local function cancelEmote()
-    if exports.scully_emotemenu:isInEmote() then
-        exports.scully_emotemenu:cancelEmote()
+    if exports["rpemotes"]:IsPlayerInAnim() then
+        exports["rpemotes"]:EmoteCancel(forceCancel)
     end
 end
 
@@ -22,7 +22,7 @@ local function playRandomIdleAnimation()
     if #availableAnimations > 0 then
         local randomIndex = 1 + math.floor(#availableAnimations * math.random())
         local randomisedAnim = availableAnimations[randomIndex]
-        exports.scully_emotemenu:playEmoteByCommand(randomisedAnim)
+        exports["rpemotes"]:EmoteCommandStart(randomisedAnim)
         isIdlePlaying = true
         lastIdleAnimation = randomisedAnim
         print("Playing idle animation:", randomisedAnim)
@@ -57,7 +57,7 @@ RegisterNetEvent("QBCore:Client:OnPlayerLoaded", function()
           and not GetVehiclePedIsIn(cache.ped, false) ~= 0 
           and not IsEntityDead(cache.ped) 
           and IsPedStill(cache.ped) 
-          and not exports.scully_emotemenu:isInEmote() 
+          and not exports["rpemotes"]:IsPlayerInAnim()
           and not IsPedWalking(cache.ped) then
               if GetGameTimer() - lastActionTime > idleTimeout  then
                   print("Playing IDLE Anim")
@@ -82,7 +82,7 @@ else
           and not GetVehiclePedIsIn(cache.ped, false) ~= 0 
           and not IsEntityDead(cache.ped) 
           and IsPedStill(cache.ped) 
-          and not exports.scully_emotemenu:isInEmote() 
+          and not exports["rpemotes"]:IsPlayerInAnim()
           and not IsPedWalking(cache.ped) then
               if GetGameTimer() - lastActionTime > idleTimeout  then
                   print("Playing IDLE Anim")
